@@ -1,11 +1,18 @@
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {StockOverviewPage} from './pages/StockOverviewPage' 
+import {StockDetailsPage} from './pages/StockDetailsPage' 
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <h2 className="mt-5">stocks</h2>
-    </div>
+    <main className="container">
+      <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<StockOverviewPage/>}/>
+        <Route path='/detail/:symbol' element={<StockDetailsPage/>} />
+      </Routes>
+      </BrowserRouter>
+    </main>
   );
 }
 
