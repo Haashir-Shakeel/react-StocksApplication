@@ -9,7 +9,11 @@ export const StockList = () => {
   useEffect(()=>{
     const fetchData = async () => {
       try {
-        const response = await finnHub.get("/quote?symbol=MSFT&token=cdgtt42ad3i2r375gtb0cdgtt42ad3i2r375gtbg")
+        const response = await finnHub.get("/quote", {
+          params:{
+            symbol : "MSFT",
+          }
+        })
         console.log(response);
       } catch (error) {
 
