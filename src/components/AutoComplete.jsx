@@ -2,10 +2,14 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import finnHub from '../apis/finnHub'
+import { useGlobalWatchListContext } from '../context/watchListContext'
 
 export const AutoComplete = () => {
   const [searchTerm, setSearchTerm] = useState("")
   const [searchResults, setSearchResults] = useState([])
+
+  const {addStock} = useGlobalWatchListContext()
+
 
   const renderDropdown = () => {
     const dropdownClass = searchTerm ? "show" : null
@@ -19,7 +23,11 @@ export const AutoComplete = () => {
         {
           searchResults.map((result)=>{
             return (
-              <li className='dropdown-item' key={result.symbol}>{result.description} ({result.symbol})</li>
+              <li 
+              onClick={()=> {
+                addStock(result.symbol)
+                setSearchTerm("")
+              }} className='dropdown-item' key={result.symbol}>{result.description} ({result.symbol})</li>
             )
           })
         }

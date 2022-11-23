@@ -48,7 +48,7 @@ export const StockList = () => {
     fetchData()
     //this will run whenever component gets unmounted 
     return () => (isMounted = false)
-  },[])
+  },[watchList])
 
  
   return (
