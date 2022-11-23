@@ -7,6 +7,21 @@ export const AutoComplete = () => {
   const [searchTerm, setSearchTerm] = useState("")
   const [searchResults, setSearchResults] = useState([])
 
+  const renderDropdown = () => {
+    const dropdownClass = searchTerm ? "show" : null
+    return (
+      <ul className={`dropdown-menu ${dropdownClass}`} >
+        {
+          searchResults.map((result)=>{
+            return (
+              <li className='dropdown-item' key={result.symbol}>{result.description} ({result.symbol})</li>
+            )
+          })
+        }
+      </ul>
+    )
+  }
+
   useEffect(()=>{
     let isMounted = true
     const fetchData = async () => {
@@ -37,10 +52,7 @@ export const AutoComplete = () => {
         placeholder="Search" autoComplete='off' value={searchTerm} onChange={(e)=> setSearchTerm(e.target.value)}>
         </input>
         <label htmlFor='search'>Search</label>
-        <ul className='dropdown-menu '>
-          <li>stock1</li>
-          <li>stock2</li>
-        </ul>
+        {renderDropdown()}
       </div>
     </div>
   )
