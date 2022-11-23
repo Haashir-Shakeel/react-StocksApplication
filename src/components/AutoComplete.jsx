@@ -10,7 +10,12 @@ export const AutoComplete = () => {
   const renderDropdown = () => {
     const dropdownClass = searchTerm ? "show" : null
     return (
-      <ul className={`dropdown-menu ${dropdownClass}`} >
+      <ul style={{
+        height: '500px',
+        overflowY: "scroll",
+        overflowX: "hidden",
+        cursor: "pointer"
+        }} className={`dropdown-menu ${dropdownClass}`} >
         {
           searchResults.map((result)=>{
             return (
