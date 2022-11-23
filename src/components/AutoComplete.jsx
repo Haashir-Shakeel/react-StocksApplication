@@ -5,22 +5,31 @@ import finnHub from '../apis/finnHub'
 
 export const AutoComplete = () => {
   const [searchTerm, setSearchTerm] = useState("")
+  const [searchResults, setSearchResults] = useState([])
 
   useEffect(()=>{
+    let isMounted = true
     const fetchData = async () => {
+
       try{
+
         const response = await finnHub.get("/search", {
           params:{
             q: searchTerm
           }
         })
-        console.log(response);
-      }catch (error) {
+        isMounted && setSearchResults(response.data.result)
+
+      } catch (error) {
 
       }
     }
-    searchTerm.length > 0 && fetchData()
+    searchTerm.length > 0 ? fetchData() : setSearchResults([])
+
+    return () => (isMounted = false)
   },[searchTerm])
+
+
   return (
     <div className='w-50 p-5 rounded mx-auto'>
       <div className='form-floating dropdown'>
