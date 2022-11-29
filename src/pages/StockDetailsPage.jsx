@@ -27,7 +27,7 @@ export const StockDetailsPage = () => {
       //depends on if stock market was closed day before
       const oneDay = currentTime - 24*60*60
 
-      const oneWeak = currentTime - 7 * 24 * 60 * 60
+      const oneWeek = currentTime - 7 * 24 * 60 * 60
       const oneYear = currentTime - 365 * 24 * 60 * 60
 
       try{
@@ -43,7 +43,7 @@ export const StockDetailsPage = () => {
           finnHub.get('/stock/candle',
           {params:{
             symbol: symbol,
-            from : oneWeak,
+            from : oneWeek,
             to : currentTime,
             resolution: 60,
           }
@@ -82,6 +82,7 @@ export const StockDetailsPage = () => {
           <StockChart chartData= {chartData} symbol={symbol}/>
         </div>
       )}
+
       </div>
   )
 }
