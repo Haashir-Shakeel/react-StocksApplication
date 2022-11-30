@@ -9,7 +9,7 @@ import "../App.css"
 
 export const StockList = () => {
   const [stock, setStock] = useState([])
-  const {watchList} = useGlobalWatchListContext()
+  const {watchList, deleteStock} = useGlobalWatchListContext()
 
   const navigate = useNavigate()
   
@@ -84,7 +84,15 @@ export const StockList = () => {
                 <td>{stockData.data.h}</td>
                 <td>{stockData.data.l}</td>
                 <td>{stockData.data.o}</td>
-                <td>{stockData.data.pc} <button className='btn btn-danger btn-sm ml-10 d-inline-block delete-button'>Remove</button></td>
+                <td>{stockData.data.pc} 
+                <button
+                 className='btn btn-danger btn-sm ml-10 d-inline-block delete-button'
+                 onClick={(event)=>{
+                  //event bubbling up
+                  event.stopPropagation() //to stop event bubbling
+                  deleteStock(stockData.symbol)
+                }}
+                 >Remove</button></td>
 
               </tr>
             )
