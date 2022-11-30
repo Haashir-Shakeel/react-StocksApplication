@@ -19,7 +19,7 @@ const StockChart = ({chartData,symbol}) => {
         return day
     }
   }
-
+  console.log(determineDateFormat());
   const color = determineDateFormat()
   [determineDateFormat().length - 1].y - determineDateFormat()[0].y > 0 ? "#26C281" : "#ed3419"
 

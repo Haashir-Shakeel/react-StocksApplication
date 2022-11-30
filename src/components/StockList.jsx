@@ -5,6 +5,7 @@ import finnHub from '../apis/finnHub'
 import {useNavigate} from 'react-router-dom'
 import {BsFillCaretDownFill, BsFillCaretUpFill} from 'react-icons/bs'
 import { useGlobalWatchListContext } from '../context/watchListContext'
+import "../App.css"
 
 export const StockList = () => {
   const [stock, setStock] = useState([])
@@ -83,7 +84,7 @@ export const StockList = () => {
                 <td>{stockData.data.h}</td>
                 <td>{stockData.data.l}</td>
                 <td>{stockData.data.o}</td>
-                <td>{stockData.data.pc}</td>
+                <td>{stockData.data.pc} <button className='btn btn-danger btn-sm ml-10 d-inline-block delete-button'>Remove</button></td>
 
               </tr>
             )
