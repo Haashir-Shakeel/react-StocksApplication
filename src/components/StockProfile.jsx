@@ -14,7 +14,6 @@ export const StockProfile = ({symbol}) => {
                         symbol: symbol
                     }
                 })
-                console.log(response);
                 if (isMounted){
                     setStockProfileData(response.data)
                 }

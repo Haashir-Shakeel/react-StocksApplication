@@ -28,7 +28,7 @@ export const StockList = () => {
     let isMounted = true
     const fetchData = async () => {
       try {
-        const response = await Promise.all(watchList.map((stockItem)=>{
+        const responses = await Promise.all(watchList.map((stockItem)=>{
           return finnHub.get("/quote", {
             params:{
               symbol : stockItem,
@@ -36,13 +36,12 @@ export const StockList = () => {
           })
         }))
         
-        const data = response.map((response)=>{
+        const data = responses.map((response)=>{
           return {
             data: response.data,
             symbol: response.config.params.symbol,
           }
         })
-        console.log(data);
         //we dont want to set value if component is unmounted
         isMounted && setStock(data)
       } catch (error) {
