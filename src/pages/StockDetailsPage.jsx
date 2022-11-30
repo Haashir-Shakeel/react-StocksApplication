@@ -58,7 +58,6 @@ export const StockDetailsPage = () => {
         })
   ])
   
-      console.log(responses);
 
       setChartData({
         day: formatData(responses[0].data),
